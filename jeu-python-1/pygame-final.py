@@ -203,7 +203,7 @@ tous_sprites = pygame.sprite.Group()
 # Le missile
 le_missile = pygame.sprite.Group()
 # Les ennemis
-les_ennemies = pygame.sprite.Group()
+les_ennemis = pygame.sprite.Group()
 # Les explosions
 les_explosions = pygame.sprite.Group()
 # Les étoiles
@@ -230,7 +230,7 @@ while continuer:
             # Create the new enemy and add it to sprite groups
             nouvel_ennemi = Ennemi()
             # Ajout aux groupes
-            les_ennemies.add(nouvel_ennemi)
+            les_ennemis.add(nouvel_ennemi)
             tous_sprites.add(nouvel_ennemi)
         elif event.type == AJOUTE_ETOILE:
             # Create the new start and add it to sprite groups
@@ -242,7 +242,7 @@ while continuer:
     ecran.fill((0, 0, 0))
 
     # Detection des collisions héro / ennemi
-    if pygame.sprite.spritecollideany(vaisseau, les_ennemies):
+    if pygame.sprite.spritecollideany(vaisseau, les_ennemis):
         vaisseau.kill()
         explosion = Explosion(vaisseau.rect.center)
         les_explosions.add(explosion)
@@ -251,7 +251,7 @@ while continuer:
 
     # Détection des collisions missile/ennemi
     for missile in le_missile:
-        liste_ennemis_touches = pygame.sprite.spritecollide(missile, les_ennemies, True)
+        liste_ennemis_touches = pygame.sprite.spritecollide(missile, les_ennemis, True)
         if len(liste_ennemis_touches) > 0:
             missile.kill()
             score.incremente(len(liste_ennemis_touches))
@@ -266,7 +266,7 @@ while continuer:
     # Mise à jour des éléments
     vaisseau.update(touche_appuyee)
     le_missile.update()
-    les_ennemies.update()
+    les_ennemis.update()
     les_explosions.update()
     les_etoiles.update()
     score.update()

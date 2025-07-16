@@ -188,8 +188,8 @@ pygame.init()
 pygame.display.set_caption("The Shoot'em up 1.0 !")
 
 # Evenement créant un ennemi chaque 1/2 seconde (500 ms)
-AJOUTE_ENEMY = pygame.USEREVENT + 1
-pygame.time.set_timer(AJOUTE_ENEMY, 500)
+AJOUTE_ENNEMI = pygame.USEREVENT + 1
+pygame.time.set_timer(AJOUTE_ENNEMI, 500)
 # Evenement pour ajouter une étoile toutes les 100ms
 AJOUTE_ETOILE = pygame.USEREVENT + 2
 pygame.time.set_timer(AJOUTE_ETOILE, 100)
@@ -226,7 +226,7 @@ while continuer:
         if event.type == pygame.QUIT:
             continuer = False
         # Faut-il ajouter un ennemi ?
-        elif event.type == AJOUTE_ENEMY:
+        elif event.type == AJOUTE_ENNEMI:
             # Create the new enemy and add it to sprite groups
             nouvel_ennemi = Ennemi()
             # Ajout aux groupes

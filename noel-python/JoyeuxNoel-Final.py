@@ -34,7 +34,7 @@ maFenetre.title("Joyeux Noël")
 
 canvas = Canvas(maFenetre, width=800, height=800, bg="black")
 
-image_fond = PhotoImage(file="images/sapin.png")
+image_fond = PhotoImage(file=REP_IMG + "/sapin.png")
 canvas.create_image(400, 400, image=image_fond)
 
 canvas.pack()

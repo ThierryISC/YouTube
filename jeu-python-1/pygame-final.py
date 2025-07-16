@@ -1,6 +1,5 @@
 # Import de la librairie pygame
-import pygame
-import random
+import pygame, random
 
 # Pour avoir les constantes de Pygame
 from pygame import *
@@ -64,9 +63,7 @@ class Missile(pygame.sprite.Sprite):
         super(Missile, self).__init__()
         self.surf = pygame.image.load("ressources/missile.png").convert()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
-        self.rect = self.surf.get_rect(
-            center=center_missile
-        )
+        self.rect = self.surf.get_rect(center=center_missile)
         # On joue le son qui va bien
         son_missile.play()
 
@@ -80,9 +77,9 @@ class Missile(pygame.sprite.Sprite):
 
 # Classe définissant un vaisseau ennemi
 # Herite de Sprite
-class Enemmi(pygame.sprite.Sprite):
+class Ennemi(pygame.sprite.Sprite):
     def __init__(self):
-        super(Enemmi, self).__init__()
+        super(Ennemi, self).__init__()
         self.surf = pygame.image.load("ressources/ennemi.png").convert()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         # Les ennemis apparaissent sur la droite de l'écran, à une hauteur au hazard
@@ -114,9 +111,7 @@ class Explosion(pygame.sprite.Sprite):
         self._compteur = 10
         self.surf = pygame.image.load("ressources/explosion.png").convert()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
-        self.rect = self.surf.get_rect(
-            center=center_vaisseau
-        )
+        self.rect = self.surf.get_rect(center=center_vaisseau)
         # On ajoute un son d'explosion
         son_explosion.play()
 
@@ -161,10 +156,9 @@ class Score(pygame.sprite.Sprite):
 
     def _setText(self):
         self.surf = police_score.render(
-            'Score : ' + str(self._scoreCourant), False, (255, 255, 255))
-        self.rect = self.surf.get_rect(
-            center=(LARGEUR_ECRAN / 2, 15)
+            "Score : " + str(self._scoreCourant), False, (255, 255, 255)
         )
+        self.rect = self.surf.get_rect(center=(LARGEUR_ECRAN / 2, 15))
 
     def update(self):
         self._setText()
@@ -184,7 +178,7 @@ son_explosion = pygame.mixer.Sound("ressources/explosion.ogg")
 # Initialisation des polices de caractères
 pygame.font.init()
 # Chargement de la police pour afficher le score
-police_score = pygame.font.SysFont('Comic Sans MS', 30)
+police_score = pygame.font.SysFont("Comic Sans MS", 30)
 
 # Réglage de l'horloge
 clock = pygame.time.Clock()
@@ -234,10 +228,10 @@ while continuer:
         # Faut-il ajouter un ennemi ?
         elif event.type == AJOUTE_ENEMY:
             # Create the new enemy and add it to sprite groups
-            nouvel_enemmi = Enemmi()
+            nouvel_ennemi = Ennemi()
             # Ajout aux groupes
-            les_ennemies.add(nouvel_enemmi)
-            tous_sprites.add(nouvel_enemmi)
+            les_ennemies.add(nouvel_ennemi)
+            tous_sprites.add(nouvel_ennemi)
         elif event.type == AJOUTE_ETOILE:
             # Create the new start and add it to sprite groups
             nouvel_etoile = Etoile()
@@ -257,8 +251,7 @@ while continuer:
 
     # Détection des collisions missile/ennemi
     for missile in le_missile:
-        liste_ennemis_touches = pygame.sprite.spritecollide(
-            missile, les_ennemies, True)
+        liste_ennemis_touches = pygame.sprite.spritecollide(missile, les_ennemies, True)
         if len(liste_ennemis_touches) > 0:
             missile.kill()
             score.incremente(len(liste_ennemis_touches))
@@ -279,7 +272,7 @@ while continuer:
     score.update()
 
     # Mise à jour du vaisseau
-    #ecran.blit(vaisseau.surf, vaisseau.rect)
+    # ecran.blit(vaisseau.surf, vaisseau.rect)
     # Recopie des objets sur la surface ecran
     for mon_sprite in tous_sprites:
         ecran.blit(mon_sprite.surf, mon_sprite.rect)

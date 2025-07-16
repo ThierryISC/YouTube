@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Raccourcisseur</title>
+</head>
+<body>
+  <h1>Raccourcisseur d'URL</h1>
+  <br>
+  <h3>Coller ici votre URL</h3>
+  <form method="post">
+    <input type="text" name="url" placeholder="http://www.exemple.fr" required>
+    <button type="submit">Raccourcir mon URL !</button>
+  </form>
+
+  <br>
+  {% if short_url %}
+  <h3>Lien raccourci : <a href="{{ short_url }}">{{ short_url }}</a></h3>
+  {% endif %}
+</body>
+</html>
